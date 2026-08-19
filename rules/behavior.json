@@ -51,9 +51,20 @@
       {
         "CONDITION": [
           "ENEMY",
+          "AT",
           "CONDITION_OPEN",
           "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
           "AND",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
           "EAST",
           "CONDITION_CLOSE"
         ],
