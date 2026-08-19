@@ -1,5 +1,5 @@
 from src.file_utilities.file_navigator import FileNavigator
-from rules.constants import SYMBOLS
+from src.constants import SYMBOLS
 
 
 
