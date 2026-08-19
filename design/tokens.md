@@ -56,4 +56,7 @@ flowchart LR
     BOARD --> B_EMPTY["EMPTY = ∅"]
     BOARD --> B_FRIENDLY["FRIENDLY = ⊙"]
     BOARD --> B_ENEMY["ENEMY = ⊗"]
+    
+    note1["note: the actual tokens<br/> are the variable names"] -.- SYMBOLS
+    note2["note: the symbols are to <br/>provide a visualization"] -.- SYMBOLS
 ```
