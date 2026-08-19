@@ -1,0 +1,11 @@
+JSON
+ ↓
+tokens
+ ↓
+Parser
+ ↓
+AST (Abstract Syntax Tree)
+ ↓
+Evaluator
+ ↓
+Chess behavior

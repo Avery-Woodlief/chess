@@ -1,0 +1,16 @@
+
+ ___________________ 
+|                   |
+|EXCEPTION OCCURED  |
+|<class 'TypeError'>|
+|___________________|
+Traceback (most recent call last):
+  File "C:\Users\avery\OneDrive\Documents\video_game\logs\logger.py", line 23, in <module>
+    a += "1"
+TypeError: can only concatenate tuple (not "str") to tuple
+
+extra message
+ _____________ 
+|             |
+|END EXCEPTION|
+|_____________|
