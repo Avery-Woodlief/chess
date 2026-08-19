@@ -4,7 +4,7 @@ from src.constants import SYMBOLS
 
 
 if __name__ == "__main__":
-    game_rules = FileNavigator.grab("rules", "behavior.json")
+    game_rules = FileNavigator.grab("rules", "pawn.json")
 
     DIRECTIONS = SYMBOLS["DIRECTIONS"]
     PIECES = SYMBOLS["PIECES"]

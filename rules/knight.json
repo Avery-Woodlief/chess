@@ -1,0 +1,681 @@
+{
+  "KNIGHT": {
+    "NORMAL": [
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "IN_MOTION",
+          "AND",
+          "EMPTY",
+          "AT",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      }
+    ],
+    "CAPTURING": [
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "EAST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "NORTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      },
+      {
+        "CONDITION": [
+          "ENEMY",
+          "AT",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE"
+        ],
+        "ACTION": [
+          "MOVEMENT",
+          "ACTION_OPEN",
+          "CONDITION_OPEN",
+          "WEST",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 2
+          },
+          "QUANTITY_CLOSE",
+          "AND",
+          "SOUTH",
+          "QUANTITY_OPEN",
+          {
+            "VALUE": 1
+          },
+          "QUANTITY_CLOSE",
+          "CONDITION_CLOSE",
+          "ACTION_CLOSE"
+        ]
+      }
+    ],
+    "SPECIAL": []
+  }
+}
