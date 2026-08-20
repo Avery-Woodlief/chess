@@ -1,5 +1,7 @@
 import random
+import re
 from src.constants import HEX_CHARS
+from src.parser.parser import Parser
 
 def generate_id(piece_type : str, team : int, digits=5) -> str:
 
@@ -15,24 +17,26 @@ def generate_id(piece_type : str, team : int, digits=5) -> str:
     full_id = f"{piece_type}-{id_}-{team}"
     return full_id
 
+from src.geometry.position import Position
+from src.file_utilities.file_navigator import FileNavigator
+
 class Piece:
     ids_in_play = set()
-    def __init__(self, piece_type="", team=-1):
+    def __init__(self, piece_type="", team=-1, x=0, y=0):
         self.id = generate_id(piece_type, team)
         Piece.ids_in_play.add(self.id)
+        self.position = Position(x, y)
+        self.rule_set = FileNavigator.grab("rules", f"{piece_type}.json")
+        if not self.rule_set:
+            self.rule_set = dict()
+        self.normal_rule = self.rules("NORMAL")
+        self.capturing_rule = self.rules("CAPTURING")
+        self.special_rule = self.rules("SPECIAL")
+        self.moves_made = 0 # has not made a move yet
+        self.path = []
+
+    def rules(self, category):
+        return self.rule_set.get(f"{category}".upper())
 
     def __str__(self):
-        return self.id
-
-
-if __name__ == "__main__":
-    pawns = [Piece("pawn", i % 2) for i in range(16)]
-    kings = [Piece("king", i % 2) for i in range(2)]
-    queens = [Piece("queen", i % 2) for i in range(2)]
-    rooks = [Piece("rooks", i % 2) for i in range(4)]
-    knights = [Piece("knights", i % 2) for i in range(4)]
-    bishops = [Piece("bishops", i % 2) for i in range(4)]
-
-    for p in pawns+kings+queens+rooks+knights+bishops:
-        print(p)
-    print(len(list(set(Piece.ids_in_play)))) # 26 is output
+        return str((self.id, self.position, "has rules" if self.rule_set else "no rules applied"))
