@@ -16,8 +16,24 @@ SYMBOLS = {
             "label": "W",
             "effect": (-1, 0),
         },
-    },
 
+        "NORTHEAST": {
+            "label": "NE",
+            "effect": (1, 1),
+        },
+        "NORTHWEST": {
+            "label": "NW",
+            "effect": (-1, 1),
+        },
+        "SOUTHEAST": {
+            "label": "SE",
+            "effect": (1, -1),
+        },
+        "SOUTHWEST": {
+            "label": "SW",
+            "effect": (-1, -1),
+        },
+    },
     "PIECES": {
         "PAWN": "<p>",
         "ROOK": "<r>",
@@ -37,8 +53,40 @@ SYMBOLS = {
         "TRUE": "\u22A4",         # ⊤
         "FALSE": "\u22A5",        # ⊥
     },
+    "ACTIONS": {
+        "MOVE": "\u2192",
+        "CAPTURE": "\xd7",
+        "PROMOTE": "\u21D1",
+        "CASTLE": "\u21c6",
+        "EN_PASSANT": "\u2198",
+        "HALT": "\u25A0",         # ■
+    },
+    "STATE": {
+        "IN_MOTION": "\u219D",    # ↝
+        "INITIAL": "\u25C9",      # ◉
+        "NORMAL": "\u25CB",       # ○
+        "CAPTURING": "\u2717",    # ×
+        "SPECIAL": "\u2605",      # ★
 
+        "SELECTED": "\u24c8", # Ⓢ
+        "CAPTURED": "\u2620", # ☠
+        "IN_CHECK": "\u203C", # ‼
+    },
+    "BOARD": {
+        "SQUARE": "\u25A1",       # □
+        "ADJACENT": "\u223C",     # ∼
+        "AT": "\u0040",           # @
+        "EMPTY": "\u2205",        # ∅
+        "FRIENDLY": "\u2299",     # ⊙
+        "ENEMY": "\u2297",        # ⊗
+        "END_OF_BOARD": "\u22A3", # ⊣
+
+        "PATH_CLEAR": "CLEAR",
+        "BLOCKED": "BLOCKED",
+        "ATTACKED": "\u2694", # ⚔
+    },
     "GRAMMAR": {
+        "RANGE": "..",
         "CONDITION": "\u25C7",    # ◇
 
         "ACTION_OPEN": "[",
@@ -53,32 +101,13 @@ SYMBOLS = {
         "QUANTITY_OPEN": "{",
         "QUANTITY_CLOSE": "}",
     },
-
-    "STATE": {
-        "MOVEMENT": "\u2192",     # →
-        "IN_MOTION": "\u219D",    # ↝
-
-        "INITIAL": "\u25C9",      # ◉
-        "NORMAL": "\u25CB",       # ○
-
-        "CAPTURING": "\u00D7",    # ×
-
-        "SPECIAL": "\u2605",      # ★
-        "END_OF_BOARD": "\u22A3", # ⊣
-        "PROMOTION": "\u21D1",    # ⇑
-
-        "HALT": "\u25A0",         # ■
-    },
-
-    "BOARD": {
-        "SQUARE": "\u25A1",       # □
-        "ADJACENT": "\u223C",     # ∼
-        "AT": "\u0040",           # @
-        "EMPTY": "\u2205",        # ∅
-
-        "FRIENDLY": "\u2299",     # ⊙
-        "ENEMY": "\u2297",        # ⊗
-    },
+    "SPECIAL_RULES": {
+        "CASTLING": "CASTLING",
+        "KINGSIDE": "KINGSIDE",
+        "QUEENSIDE": "QUEENSIDE",
+        "EN_PASSANT": "EN_PASSANT",
+        "LAST_MOVE": "LAST_MOVE",
+    }
 }
 
 HEX_CHARS = "0123456789abcdef"
