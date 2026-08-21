@@ -1,8 +1,9 @@
 import random
-import re
 from src.constants import HEX_CHARS
-from logs.exceptions import PositionError
 from logs.logger import Logger
+from logs.exceptions import PositionError, PositionLengthError
+from src.constants import SYMBOLS
+
 
 def generate_id(piece_type : str, team : int, digits=5) -> str:
 
@@ -13,7 +14,7 @@ def generate_id(piece_type : str, team : int, digits=5) -> str:
         team = "None"
 
     id_ = "".join(random.choices(HEX_CHARS, k=digits))
-    while f"{piece_type}-{id_}-{team}" in Piece.ids_in_play:
+    while f"{piece_type}-{id_}-{team}" in Piece.in_play.keys():
         id_ = "".join(random.choices(HEX_CHARS, k=digits))
     full_id = f"{piece_type}-{id_}-{team}"
     return full_id
@@ -22,10 +23,11 @@ from src.geometry.position import Position
 from src.file_utilities.file_navigator import FileNavigator
 
 class Piece:
-    ids_in_play = set()
+    in_play = dict()
     def __init__(self, piece_type="", team=-1, x=0, y=0):
         self.id = generate_id(piece_type, team)
-        Piece.ids_in_play.add(self.id)
+        self.type = piece_type
+        Piece.in_play[self.id] = self
         self.position = Position(x, y)
         self.rule_set = FileNavigator.grab("rules", f"{piece_type}.json")
         if not self.rule_set:
@@ -46,5 +48,11 @@ class Piece:
     def rules(self, category):
         return self.rule_set.get(f"{category}".upper())
 
+    def __eq__(self, other):
+        if hasattr(other, "id"):
+            if self.id == other.id:
+                return True
+        return False
+
     def __str__(self):
-        return str((self.id, self.position, "has rules" if self.rule_set else "no rules applied"))
+        return SYMBOLS["PIECES"].get(str(self.type).upper())
