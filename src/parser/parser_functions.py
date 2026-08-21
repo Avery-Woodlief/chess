@@ -1,13 +1,16 @@
 from src.game_pieces.board import *
 
+def tokenize_statement(statement:str)->list:
+    tokens = statement.split(";")
+    while '' in tokens:
+        tokens.remove('')
+    tokens_ = []
+    for token in tokens:
+        tokens_.append(token.strip(' '))
+    return tokens_
+
 if __name__ == "__main__":
-    board = Board()
-    pawn = Piece("pawn", team=0, x=0, y=1) # selected piece
-    print(Piece.in_play.get(pawn.id))
-
-    board.squares[pawn.position.y][pawn.position.x] = str(pawn)
-    for row in board.squares:
-        print(row)
-
-    Board.remove_piece(pawn)
-    print(Piece.in_play.get(pawn.id))
+    pawn = Piece("pawn", 0, 0, 1)
+    Board.selected_id = pawn.id
+    Board.selected_rules = tokenize_statement(pawn.normal_rule["ACTION"])
+    Board.execute_selected_piece_tokens()
