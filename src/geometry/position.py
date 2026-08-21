@@ -1,4 +1,4 @@
-from logs.exceptions import PositionError
+from logs.exceptions import PositionError, PositionLengthError
 from typing import Any
 
 def type_check(other, additional_msg):
@@ -12,10 +12,19 @@ class Position:
         self.y = y
 
 
+    def __mul__(self, other: Any):
+        type_check(other, f"could not do {self}*{other}\ntypes: {type(self)}, {type(other)}")
+        if isinstance(other, (list, tuple)):
+            if not len(other) == 2:
+                raise PositionLengthError(f"other is of length: {len(other)}, expected it to be of length 2.")
+            return Position(self.x * other[0], self.y * other[1])
+        return Position(self.x * other.x, self.y * other.y)
 
-    def __add__(self, other):
+    def __add__(self, other: Any):
         type_check(other, f"could not do {self}+{other}\ntypes: {type(self)}, {type(other)}")
         if isinstance(other, (list, tuple)):
+            if not len(other) == 2:
+                raise PositionLengthError(f"other is of length: {len(other)}, expected it to be of length 2.")
             return Position((self.x + other[0]), (self.y + other[1]))
         return Position((self.x + other.x), (self.y + other.y))
 
