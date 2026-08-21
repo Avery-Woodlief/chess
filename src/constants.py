@@ -87,19 +87,19 @@ SYMBOLS = {
     },
     "GRAMMAR": {
         "RANGE": "..",
-        "CONDITION": "\u25C7",    # ◇
+        #"CONDITION": "\u25C7",    # ◇ # NOT NEEDED
 
         "ACTION_OPEN": "[",
         "ACTION_CLOSE": "]",
 
         "CONDITION_OPEN": "(",
-        "CONDITION_CLOSE": ")",
+        "CONDITION_CLOSE": ")"#,
 
-        "PIECE_OPEN": "<",
-        "PIECE_CLOSE": ">",
+        #"PIECE_OPEN": "<", # NOT NEEDED
+        #"PIECE_CLOSE": ">", # NOT NEEDED
 
-        "QUANTITY_OPEN": "{",
-        "QUANTITY_CLOSE": "}",
+        #"QUANTITY_OPEN": "{", # NOT NEEDED
+        #"QUANTITY_CLOSE": "}", # NOT NEEDED
     },
     "SPECIAL_RULES": {
         "CASTLING": "CASTLING",
@@ -112,3 +112,53 @@ SYMBOLS = {
 
 HEX_CHARS = "0123456789abcdef"
 
+"""
+NOTE:
+    the context of variables under either CONDITION, ATTACK, or SPECIAL is the Piece instance that is currently selected
+
+GRAMMAR:
+    \d+..\d+        indicates a range of numbers from \d+ to \d+
+                        upper bound of range is always one of the following:
+                            (1) destination square selected via user input
+                            (2) board bounds
+                            
+    (...)       ... indicates a condition to be looked at and queried, 
+                        used to help group operands for logical operations
+  
+    $...$       ... indicates a non-token variable that is assumed to be a class member of Piece
+  
+    [...]       goes with either $....$[...] to help group properties and behavior hints for $....$
+                          or ....[...]       to help group properties and behavior hints for ....
+
+KEYWORDS:
+    VALUE           followed by a ':' and either a single number or a range indicated by 
+                        either a..b or c, where a, b, and c are positive integers
+                        
+    BIND            followed by a ':' and a behavior hint, that is, the name of the function that is to be used
+                        as the metric
+                        If the named metric is not defined then that instruction is invalid and will be skipped (or crash)
+                        valid binding functions are found in src.binding_functions.py
+                        
+    DIRECTIONS      each DIRECTION keyword is used in the following format
+                        DIRECTION[VALUE: ..., BIND:....]
+    MOVE            must be followed by one of the DIRECTION keywords
+    
+    EMPTY           indicates that at least one of the board squares needs to be empty, the instructions which follow are
+                        AT DIRECTION[VALUE:a, BIND:func_name]
+
+CONDITION:
+    any value mapping to this key is to be queried
+    
+ACTION:
+    instructions for how the Piece instance is to MOVE and what DIRECTION
+    
+
+
+PARENT CATEGORIES: (NOTE: all parent categories only use CONDITION and an ACTION. If multiple then must be put into a list)
+    NORMAL          instructions under ordinary movement of the Piece instance
+    
+    CAPTURING       instructions for how and when the Piece instance can capture an enemy piece
+    
+    SPECIAL         instructions for how and when to do a non-ordinary move that is not a capture, 
+                        examples include (not limited to): castling, pawn promotion, check, etc...
+"""
