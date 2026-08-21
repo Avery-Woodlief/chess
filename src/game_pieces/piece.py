@@ -1,7 +1,8 @@
 import random
 import re
 from src.constants import HEX_CHARS
-from src.parser.parser import Parser
+from logs.exceptions import PositionError
+from logs.logger import Logger
 
 def generate_id(piece_type : str, team : int, digits=5) -> str:
 
@@ -34,6 +35,13 @@ class Piece:
         self.special_rule = self.rules("SPECIAL")
         self.moves_made = 0 # has not made a move yet
         self.path = []
+        self.vars_mapping = {"MOVES_MADE":self.moves_made, "MOVE":self.move}
+
+    def move(self, destination):
+        try:
+            self.position = destination
+        except PositionError as e:
+            Logger.write_to_logs(e, "failed to move piece")
 
     def rules(self, category):
         return self.rule_set.get(f"{category}".upper())
