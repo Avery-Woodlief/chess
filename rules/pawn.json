@@ -1,6 +1,6 @@
 {
   "NORMAL": {
-    "CONDITION": "(MOVES_MADE[VALUE:0, BIND:moves_made, CONTEXT:self]) AND (EMPTY AT NORTH[VALUE:1..2, BIND:distance])",
-    "ACTION": "MOVE NORTH[VALUE:1..2, BIND:distance]"
+    "CONDITION": "($MOVES_MADE$[VALUE:0, BIND:moves_made];) AND (EMPTY; AT; NORTH[VALUE:1..2, BIND:distance];)",
+    "ACTION": "MOVE; NORTH[VALUE:1..2, BIND:distance];"
   }
 }
