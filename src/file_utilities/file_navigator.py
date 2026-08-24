@@ -61,14 +61,30 @@ class FileNavigator:
         :return: Path instance of the folder
         """
 
+        ancestors = None
+        if platform.system().upper() == "WINDOWS":
+            ancestors = folder_name.split("\\")
+        elif platform.system().upper() == "LINUX":
+            ancestors = folder_name.split("/")
+
+        target_dir = ancestors[-1]
+
         root = PROJECT_ROOT
         if folder_name == "PROJECT_DIR":
             return root
-        folders_in_root = [directory.resolve() for directory in root.rglob(folder_name)
-                           if directory.is_dir() and not any(part in IGNORED_DIRS for part in directory.parts)]
+
+
+        source = root
+        for dir in ancestors:
+            if dir == target_dir:
+                break
+            source /= dir
+        folders_in_root = [directory.resolve() for directory in source.rglob(target_dir)
+                               if directory.is_dir() and not any(part in IGNORED_DIRS for part in directory.parts)]
+
         hit = None
         for folder in folders_in_root:
-            if folder.stem == folder_name:
+            if folder.stem == target_dir:
                 hit = folder
                 break
         return hit
@@ -99,7 +115,7 @@ class FileNavigator:
                 raise ValueError(f"{folder_name} is explicitly ignored, c.f. 'IGNORED_DIRS' in {__file__}")
 
     @staticmethod
-    def grab(folder_name : str, file_name : str) -> list | dict | NoneType:
+    def grab(folder_name : str, file_name : str) -> str | list | dict | NoneType:
         """
 
         :param folder_name:
@@ -107,11 +123,17 @@ class FileNavigator:
         :return:
         """
         try:
-            f = FileNavigator.find_file(folder_name, file_name)
-            if not ".json" in file_name:
+            file_name = Path(file_name)
+            f = FileNavigator.find_file(folder_name, str(file_name))
+            print("grabbing", f)
+            if file_name.suffix == ".txt":
                 return f.read_text(encoding="utf-8", errors="replace").split("\n")
-            else:
+            elif file_name.suffix == ".py":
+                return f.read_text(encoding="utf-8", errors="replace")
+            elif ".json" == file_name.suffix:
                 return json.load(f.open(mode="r", encoding="utf-8", errors="replace"))
+            elif ".lua" == file_name.suffix:
+                return f.read_text(encoding="utf-8", errors="replace")
         except ValueError as e:
             return None
 
@@ -127,15 +149,22 @@ class FileNavigator:
         """
         try:
             f = FileNavigator.find_file(folder_name, file_name)
+
             extension = f.suffix
             if contents and extension==".json":
                 with open(file=f, mode="w", encoding="utf-8", errors="replace") as _file:
                     json.dump(contents, _file, indent=4)
+                print("wrote to", f)
             elif contents and extension==".txt":
                 resolved_contents = str(contents) if not isinstance(contents, (list, tuple)) else join_str.join(contents)
                 f.write_text(resolved_contents, encoding="utf-8", errors="replace")
+                print("wrote to", f)
             else:
-                print(__file__)
+                if not contents:
+                    print("could not write to", f, "no contents was given to write")
+                else:
+                    print("could not write to", f, "unknown extension")
+
         except ValueError as e:
             message = [box_text(["EXCEPTION OCCURED", str(type(e))]), traceback.format_exc(),
                        box_text(["END EXCEPTION"])]
@@ -175,5 +204,4 @@ class FileNavigator:
             return None
 
 if __name__ == "__main__":
-    #FileNavigator.write("logs", "output.xlsx", ["hello", "world"])
-    FileNavigator.append("logs", "output.xlsx", "test appended message")
+    print(FileNavigator.find_file("src/game_pieces", str(Path("piece.py"))))
