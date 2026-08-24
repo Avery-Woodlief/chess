@@ -1,28 +1,11 @@
 local queries = require("utils.queries")
+local validations = require("utils.validations")
 
-function validate_arguments(piece, destination)
-    if not queries.global_exists("board") then
-        return "board was not established as a lua global.\nDo lua.globals().board = board"
-    end
-
-    status, value = queries.board_lookup(board, destination)
-    if not status then
-        local length = queries.python_getattr(board, "length")
-        local width = queries.python_getattr(board, "width")
-        return tostring(destination) .. " is bad destination\nboard is: " .. tostring(width).."," .. tostring(length)
-    end
-
-    if not queries.piece_type(piece, "pawn") then
-        return "piece was not a pawn"
-    end
-
-    if piece.class_name ~= "Piece" then
-        return "piece was not an instance of Piece"
-    end
-
-    return "good"
-end
-
+--[[
+    ordinary pawn movement, after validation of arguments.
+    if first move, then pawn can go 2 spaces or just 1
+    returns a Lua table of information about the move for handling
+--]]
 function normal_move(piece, destination)
 
     local move = {first_move=nil, --internal
@@ -31,13 +14,25 @@ function normal_move(piece, destination)
                   destination_response=nil, --debug
                   legal_move=false --what to look at
                   }
-    local validation_response = validate_arguments(piece, destination)
-    move.validation_response = validation_response
-    if validation_response ~= "good" then
+    -- VALIDATING ARGUMENTS AND CHECKING GLOBALS
+    local validation_table = {piece_response=validations.validate_piece(piece, "pawn"),
+                              destination_response=validations.validate_destination(destination),
+                              global_response=validations.validate_globals({board=""})}
+
+    move.validation_response = validations.validation_string(validation_table)
+    if move.validation_response ~= "good" then
         return move
     end
+    -- VALIDATIONS PASSED
 
+
+    -- LOGIC CHECKS
     local manhattan_distance = queries.manhattan_distance(piece.position, destination)
+
+    if piece.position[1] > destination[1] then
+        move.destination_response = "pawns cannot move backwards"
+        return move
+    end
 
     if queries.python_getattr(queries.python_getattr(piece, "position"), "x") ~= destination[0] then
         move.destination_response = "pawn cannot move horizontally in a normal move"
@@ -70,6 +65,32 @@ function normal_move(piece, destination)
     return move
 end
 
-function capture_move(piece, destination)
-    return nil
+
+--[[
+
+--]]
+function capture_move(piece_capturing, piece_to_capture)
+    local move = {validation_response=nil, --debug
+                  destination=nil, --internal
+                  destination_response=nil, --debug
+                  piece_to_capture=nil,
+                  legal_capture=false --what to look at
+                  }
+    -- VALIDATING ARGUMENTS AND CHECKING GLOBALS
+    local globals_req = {board=board,
+                         tuple=tuple}
+
+    local validation_table = {piece_capturing_response=validations.validate_piece(piece_capturing, "pawn"),
+                              global_response=validations.validate_globals(globals_req),
+                              piece_to_capture_response=validations.validate_piece(piece_to_capture)}
+
+    move.validation_response = validations.validation_string(validation_table)
+    if move.validation_response ~= "good" then
+        return move
+    end
+    -- VALIDATIONS PASSED
+    -- LOGIC CHECKS
+
+    return move
+
 end
