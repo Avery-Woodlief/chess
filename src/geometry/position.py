@@ -11,6 +11,12 @@ class Position:
         self.x = x
         self.y = y
 
+    def __getitem__(self, index):
+        if index == 0:
+            return self.x
+        elif index == 1:
+            return self.y
+        return None
 
     def __mul__(self, other: Any):
         type_check(other, f"could not do {self}*{other}\ntypes: {type(self)}, {type(other)}")
