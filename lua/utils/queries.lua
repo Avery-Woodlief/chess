@@ -44,6 +44,13 @@ function queries.python_getattr(object, attribute)
     return tostring(attribute).." is not an attribute of "..tostring(object)
 end
 
+function queries.len(destination)
+    local success, length = pcall(function()
+        return python.builtins.len(destination)
+    end)
+    return success, length
+end
+
 -- Safely looks up a square on a Python-backed board.
 -- destination is expected to be a Python tuple/list using indexes 0 and 1.
 -- Returns: success, target
@@ -95,9 +102,12 @@ function queries.same_team(piece_a, piece_b)
         return false
     end
 
-    if not queries.has_value(piece_a, "team") or not queries.has_value(piece_b, "team") then
+    if (queries.python_getattr(piece_a, "class_name") ~= "Piece") or (queries.python_getattr(piece_a, "class_name") ~= "Piece") then
         return false
     end
+
+    --print(piece_a.id)
+    --print(piece_b.id)
 
     return piece_a.team == piece_b.team
 end
@@ -221,5 +231,6 @@ function queries.destination_string(destination)
 
     return "<bad destination>"
 end
+
 
 return queries
