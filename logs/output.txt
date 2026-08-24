@@ -1,0 +1,42 @@
+
+ _____________________________________________ 
+|                                             |
+|EXCEPTION OCCURED                            |
+|<class 'logs.exceptions.BoardDimensionError'>|
+|_____________________________________________|
+Traceback (most recent call last):
+  File "/home/captain/PycharmProjects/chess/main.py", line 21, in <module>
+    print(can_move(pawn, board, (3, 2)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "lupa/lua55.pyx", line 946, in lupa.lua55._LuaObject.__call__
+  File "lupa/lua55.pyx", line 1911, in lupa.lua55.call_lua
+  File "lupa/lua55.pyx", line 1937, in lupa.lua55.execute_lua_call
+  File "lupa/lua55.pyx", line 416, in lupa.lua55.LuaRuntime.reraise_on_exception
+  File "lupa/lua55.pyx", line 2250, in lupa.lua55.py_object_getindex_with_gil
+  File "lupa/lua55.pyx", line 2212, in lupa.lua55.getitem_for_lua
+  File "/home/captain/PycharmProjects/chess/src/game_pieces/board.py", line 15, in __getitem__
+    raise BoardDimensionError("bad row value")
+logs.exceptions.BoardDimensionError: bad row value
+
+...
+ _____________ 
+|             |
+|END EXCEPTION|
+|_____________|
+ ___________________ 
+|                   |
+|EXCEPTION OCCURED  |
+|<class 'TypeError'>|
+|___________________|
+Traceback (most recent call last):
+  File "/home/captain/PycharmProjects/chess/main.py", line 18, in <module>
+    lua.execute(FileNavigator.grab("lua/rules", "pwn.lua"))
+  File "lupa/lua55.pyx", line 466, in lupa.lua55.LuaRuntime.execute
+  File "lupa/lua55.pyx", line 438, in lupa.lua55.LuaRuntime._source_encode
+TypeError: Expected string, got <class 'NoneType'>
+
+...
+ _____________ 
+|             |
+|END EXCEPTION|
+|_____________|
