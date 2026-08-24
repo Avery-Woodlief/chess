@@ -8,19 +8,29 @@ from logs.logger import Logger
 if __name__ == "__main__":
     board = Board(7, 7)
 
-    pawn = Piece("pawn", team=0, x=0,y=0)
-    board[(1, 2)] = pawn
+    pawn = Piece("pawn", team=0, x=1,y=3)
+    enemy_pawn = Piece("pawn", team=1, x=0, y=3)
+    board[(1, 3)] = pawn
+    board[(0, 4)] = enemy_pawn
     print(pawn.details)
+    print(enemy_pawn.details)
 
-
-    lua = resolve_lua(board=board)
+    _tuple = lambda *args: tuple(args)
+    lua = resolve_lua(board=board, tuple=_tuple)
     #lua.globals().board = board
 
     lua.execute(FileNavigator.grab("lua/rules", "pawn.lua"))
     normal_move = lua.globals().normal_move
-    move_report = normal_move(pawn, (0, 2))
+    move_report = normal_move(pawn, (1, 4))
     if move_report["legal_move"]:
         pawn.move(move_report["destination"])
         print(pawn.details)
+        print(enemy_pawn.details)
     else:
+        print(move_report["validation_response"])
         print(move_report["destination_response"])
+
+    capture_move = lua.globals().capture_move
+    capture_report = capture_move(pawn, enemy_pawn)
+
+    print(capture_report["validation_response"])
