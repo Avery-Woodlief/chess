@@ -30,6 +30,7 @@ class Piece:
         Piece.in_play[self.id] = self
         self.position = Position(x, y)
         self.moves_made = 0 # has not made a move yet, off
+        self.blocked = False
         self.path = {}
         self.path["initial"] = (self.position.x, self.position.y)
 
@@ -54,6 +55,14 @@ class Piece:
 
         except PositionError as e:
             Logger.write_to_logs(e, "failed to move piece")
+
+    @staticmethod
+    def capture(enemy_id):
+        captured_piece = Piece.in_play[enemy_id]
+        captured_piece.id = "None"
+        captured_piece.type = f"{captured_piece.type}_CAPTURED"
+        captured_piece.position = None
+        del Piece.in_play[enemy_id]
 
     def __eq__(self, other):
         if hasattr(other, "id"):
