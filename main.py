@@ -4,9 +4,17 @@ from src.game_pieces.board import Board
 from src.lua_wrapper.lua_executor import resolve_lua
 from logs.exceptions import *
 from logs.logger import Logger
+#TODO rewrite Logger class to use the builtin logging module
+import logging
+logging.basicConfig(
+    filename="debug.log",
+    level=logging.DEBUG,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+)
 
 if __name__ == "__main__":
     board = Board(7, 7)
+    logging.info("Program started")
 
     pawn = Piece("pawn", team=0, x=1,y=3)
     enemy_pawn = Piece("pawn", team=1, x=0, y=3)
