@@ -3,7 +3,7 @@ from lupa import LuaRuntime
 from src.file_utilities.file_navigator import FileNavigator
 
 def resolve_lua(**global_vars):
-    lua = LuaRuntime(unpack_returned_tuples=True)
+    lua = LuaRuntime(unpack_returned_tuples=False)
 
     lua_root = FileNavigator.find_folder("lua")
 
