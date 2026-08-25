@@ -7,6 +7,8 @@ from src.file_utilities.file_navigator import FileNavigator
 
 class ChessLogger:
 
+    call_counter = 0
+
     def __init__(self, filename="debug.log", level=logging.DEBUG):
         self.log_path = FileNavigator.find_folder("logs") / filename
         self.level = level
@@ -25,6 +27,7 @@ class ChessLogger:
         level=logging.INFO,
         exception: Exception | None = None
     ):
+        ChessLogger.call_counter += 1
         area = area.upper()
 
         if area not in self.areas:
@@ -43,7 +46,7 @@ class ChessLogger:
         formatter_message = self.formatter.format(record)
 
         entry = (
-            f"{formatter_message}\n"
+            f"{formatter_message} | CALL ({ChessLogger.call_counter})\n"
             f"{message}"
         )
 
