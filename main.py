@@ -39,20 +39,20 @@ if __name__ == "__main__":
     normal_move = lua.globals().normal_move
     move_report = normal_move(pawn, (1, 4))
     logs.log(area="MOVEMENT",
-             message=f"generated move report for {pawn} to (1, 4)",
+             message=f"generated move report for {pawn.id} to (1, 4)",
              level=logging.INFO)
     if move_report["legal_move"]:
         pawn.move(move_report["destination"])
         print(pawn.details)
         print(enemy_pawn.details)
         logs.log(area="MOVEMENT",
-             message=f"successfully moved {pawn} to (1, 4)",
+             message=f"successfully moved {pawn.id} to (1, 4)",
              level=logging.INFO)
     else:
         print(move_report["validation_response"])
         print(move_report["destination_response"])
         logs.log(area="MOVEMENT",
-             message=f"could not move {pawn} to (1, 4) because it was illegal\nVALIDATION RESPONSE:{move_report['validation_response']}\nDESTINATION RESPONSE: {move_report['destination_response']}",
+             message=f"could not move {pawn.id} to (1, 4) because it was illegal\nVALIDATION RESPONSE:{move_report['validation_response']}\nDESTINATION RESPONSE: {move_report['destination_response']}",
              level=logging.INFO)
 
     capture_move = lua.globals().capture_move
