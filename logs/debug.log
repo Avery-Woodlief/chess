@@ -1,18 +1,26 @@
-AREA: INITIALIZATION | chess
-2026-08-25 15:03:26,743 | INFO | CALL (1)
-created game board
-2026-08-25 15:03:26,743 | INFO | CALL (2)
-created pawn for team 0
-2026-08-25 15:03:26,778 | INFO | CALL (3)
-created pawn for team 1
-2026-08-25 15:03:26,778 | INFO | CALL (4)
-put pawns on board
-2026-08-25 15:03:26,783 | INFO | CALL (5)
-grabbed lua code
+AREA: BOARD __INIT__ | chess
+2026-08-25 15:31:23,182 | INFO | CALL (1)
+successfully completed
 
-AREA: MOVEMENT | chess
-2026-08-25 15:03:26,784 | INFO | CALL (6)
-generated move report for pawn-b05e7-0 to (1, 4)
-2026-08-25 15:03:26,784 | INFO | CALL (7)
-successfully moved pawn-b05e7-0 to (1, 4)
+AREA: PIECE ID GENERATION | chess
+2026-08-25 15:31:23,182 | INFO | CALL (2)
+the ID pawn-fcfeb-0 was created
+2026-08-25 15:31:23,192 | INFO | CALL (4)
+the ID pawn-587cf-1 was created
+
+AREA: PIECE __INIT__ | chess
+2026-08-25 15:31:23,191 | INFO | CALL (3)
+successfully completed for type:pawn,id:pawn-fcfeb-0
+2026-08-25 15:31:23,192 | INFO | CALL (5)
+successfully completed for type:pawn,id:pawn-587cf-1
+
+AREA: BOARD __SETITEM__ | chess
+2026-08-25 15:31:23,192 | INFO | CALL (6)
+successfully placed pawn-fcfeb-0 on square (1, 3)
+2026-08-25 15:31:23,192 | INFO | CALL (7)
+successfully placed pawn-587cf-1 on square (0, 4)
+
+AREA: PIECE MOVEMENT | chess
+2026-08-25 15:31:23,198 | INFO | CALL (8)
+successfully moved pawn-fcfeb-0 to (1, 4)
 
