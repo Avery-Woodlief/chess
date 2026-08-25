@@ -41,10 +41,3 @@ class Position:
         return (self.x == other.x) and (self.y == other.y)
     def __str__(self):
         return f"{self.x}, {self.y}"
-
-if __name__ == "__main__":
-    try:
-        print(Position(0, 0) + {1, 2})
-    except Exception as e:
-        from logs.logger import Logger
-        Logger.write_to_logs(e, "")

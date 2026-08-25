@@ -1,5 +1,5 @@
 import random
-from logs.logger import Logger
+from logs.logger import ChessLogger
 from logs.exceptions import PositionError, PositionLengthError
 
 HEX_CHARS = "0123456789abcdef"
@@ -54,7 +54,8 @@ class Piece:
 
 
         except PositionError as e:
-            Logger.write_to_logs(e, "failed to move piece")
+            #Logger.write_to_logs(e, "failed to move piece")
+            pass
 
     @staticmethod
     def capture(enemy_id):
