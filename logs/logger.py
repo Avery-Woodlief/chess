@@ -8,30 +8,26 @@ from src.file_utilities.file_navigator import FileNavigator
 class ChessLogger:
 
     call_counter = 0
+    areas = OrderedDict()
+    log_path = FileNavigator.find_folder("logs") / "debug.log"
+    level=logging.DEBUG
+    formatter = logging.Formatter("%(asctime)s | %(levelname)s")
+    INFO = logging.INFO
+    ERROR = logging.ERROR
+    DEBUG = logging.DEBUG
 
-    def __init__(self, filename="debug.log", level=logging.DEBUG):
-        self.log_path = FileNavigator.find_folder("logs") / filename
-        self.level = level
-
-        # Keeps areas in the order they were first created.
-        self.areas = OrderedDict()
-
-        self.formatter = logging.Formatter(
-            "%(asctime)s | %(levelname)s"
-        )
-
+    @staticmethod
     def log(
-        self,
         area: str,
-        message: str,
+        message: str = "",
         level=logging.INFO,
         exception: Exception | None = None
     ):
         ChessLogger.call_counter += 1
         area = area.upper()
 
-        if area not in self.areas:
-            self.areas[area] = []
+        if area not in ChessLogger.areas:
+            ChessLogger.areas[area] = []
 
         record = logging.LogRecord(
             name="chess",
@@ -43,7 +39,7 @@ class ChessLogger:
             exc_info=None
         )
 
-        formatter_message = self.formatter.format(record)
+        formatter_message = ChessLogger.formatter.format(record)
 
         entry = (
             f"{formatter_message} | CALL ({ChessLogger.call_counter})\n"
@@ -51,13 +47,14 @@ class ChessLogger:
         )
 
         if exception is not None:
-            entry += self._format_exception(exception)
+            entry += ChessLogger._format_exception(exception)
 
-        self.areas[area].append(entry)
+        ChessLogger.areas[area].append(entry)
 
-        self._write()
+        ChessLogger._write()
 
-    def _format_exception(self, exception):
+    @staticmethod
+    def _format_exception(exception):
         tb = exception.__traceback__
 
         if tb is not None:
@@ -90,10 +87,11 @@ class ChessLogger:
             f"{traceback_message}"
         )
 
-    def _write(self):
-        with open(self.log_path, "w", encoding="utf-8") as file:
+    @staticmethod
+    def _write():
+        with open(ChessLogger.log_path, "w", encoding="utf-8") as file:
 
-            for area, entries in self.areas.items():
+            for area, entries in ChessLogger.areas.items():
                 file.write(
                     f"AREA: {area} | chess\n"
                 )
@@ -104,43 +102,3 @@ class ChessLogger:
                     )
 
                 file.write("\n")
-
-if __name__ == "__main__":
-    logs = ChessLogger()
-
-    logs.log(
-        "initialization",
-        "created game board"
-    )
-
-    logs.log(
-        "initialization",
-        "created team 0's pieces"
-    )
-
-    logs.log(
-        "movement",
-        "pawn moved to (1, 3)"
-    )
-
-    logs.log(
-        "initialization",
-        "created team 1's pieces"
-    )
-
-    import time
-    time.sleep(2)
-    logs.log(
-        "movement",
-        "pawn moved to (1, 4)"
-    )
-
-    try:
-        raise TypeError("An exception occured")
-    except TypeError as e:
-        logs.log(
-            "movement",
-            "pawn moved to (1, 5)",
-            level=logging.ERROR,
-            exception=e
-        )
