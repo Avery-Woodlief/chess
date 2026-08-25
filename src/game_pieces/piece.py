@@ -16,6 +16,7 @@ def generate_id(piece_type : str, team : int, digits=5) -> str:
     while f"{piece_type}-{id_}-{team}" in Piece.in_play.keys():
         id_ = "".join(random.choices(HEX_CHARS, k=digits))
     full_id = f"{piece_type}-{id_}-{team}"
+    ChessLogger.log(area="PIECE ID GENERATION", message=f"the ID {full_id} was created")
     return full_id
 
 from src.geometry.position import Position
@@ -33,6 +34,7 @@ class Piece:
         self.blocked = False
         self.path = {}
         self.path["initial"] = (self.position.x, self.position.y)
+        ChessLogger.log(area="PIECE __init__", message=f"successfully completed for {self}")
 
     @property
     def class_name(self):
@@ -51,11 +53,12 @@ class Piece:
             self.position = Position(destination[0], destination[1])
             self.moves_made += 1
             self.path[self.moves_made] = (self.position.x, self.position.y)
-
+            ChessLogger.log(area="PIECE MOVEMENT", message=f"successfully moved {self.id} to {destination}")
 
         except PositionError as e:
-            #Logger.write_to_logs(e, "failed to move piece")
-            pass
+            ChessLogger.log(area="PIECE MOVEMENT", message=f"failed to moved {self.id} to {destination}",
+                            level=ChessLogger.ERROR, exception=e)
+            return
 
     @staticmethod
     def capture(enemy_id):

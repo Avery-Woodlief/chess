@@ -1,10 +1,14 @@
 from logs.exceptions import PositionError, PositionLengthError
 from typing import Any
+from logs.logger import ChessLogger
 
 def type_check(other, additional_msg):
-        if not isinstance(other, (Position, tuple, list)):
-            raise PositionError(f"argument named other is not type Position, tuple, list.\ngot {type(other)}\n{additional_msg}")
-        return None
+        try:
+            if not isinstance(other, (Position, tuple, list)):
+                raise PositionError(f"argument named other is not type Position, tuple, list.\ngot {type(other)}\n{additional_msg}")
+        except PositionError as e:
+            ChessLogger.log(area="POSITION type_check", level=ChessLogger.ERROR, exception=e)
+            return None
 
 class Position:
     def __init__(self, x : int, y : int):
@@ -18,11 +22,19 @@ class Position:
             return self.y
         return None
 
-    def __mul__(self, other: Any):
-        type_check(other, f"could not do {self}*{other}\ntypes: {type(self)}, {type(other)}")
+    def __mul__(self, other: Any) -> Any:
+        try:
+            type_check(other, f"could not do {self}*{other}\ntypes: {type(self)}, {type(other)}")
+        except Exception as e:
+            ChessLogger.log(area="POSITION __mul__", level=ChessLogger.ERROR, exception=e)
+            return None
         if isinstance(other, (list, tuple)):
-            if not len(other) == 2:
-                raise PositionLengthError(f"other is of length: {len(other)}, expected it to be of length 2.")
+            try:
+                if not len(other) == 2:
+                    raise PositionLengthError(f"other is of length: {len(other)}, expected it to be of length 2.")
+            except PositionLengthError as e:
+                ChessLogger.log(area="POSITION __mul__", level=ChessLogger.ERROR, exception=e)
+                return None
             return Position(self.x * other[0], self.y * other[1])
         return Position(self.x * other.x, self.y * other.y)
 
