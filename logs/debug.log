@@ -1,18 +1,18 @@
 AREA: INITIALIZATION | chess
-2026-08-25 14:49:19,210 | INFO
+2026-08-25 15:03:26,743 | INFO | CALL (1)
 created game board
-2026-08-25 14:49:19,211 | INFO
+2026-08-25 15:03:26,743 | INFO | CALL (2)
 created pawn for team 0
-2026-08-25 14:49:19,220 | INFO
+2026-08-25 15:03:26,778 | INFO | CALL (3)
 created pawn for team 1
-2026-08-25 14:49:19,220 | INFO
+2026-08-25 15:03:26,778 | INFO | CALL (4)
 put pawns on board
-2026-08-25 14:49:19,225 | INFO
+2026-08-25 15:03:26,783 | INFO | CALL (5)
 grabbed lua code
 
 AREA: MOVEMENT | chess
-2026-08-25 14:49:19,226 | INFO
-generated move report for type:pawn,id:pawn-9b76d-0 to (1, 4)
-2026-08-25 14:49:19,226 | INFO
-successfully moved type:pawn,id:pawn-9b76d-0 to (1, 4)
+2026-08-25 15:03:26,784 | INFO | CALL (6)
+generated move report for pawn-b05e7-0 to (1, 4)
+2026-08-25 15:03:26,784 | INFO | CALL (7)
+successfully moved pawn-b05e7-0 to (1, 4)
 
